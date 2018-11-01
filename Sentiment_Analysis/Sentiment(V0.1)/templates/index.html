@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width , initial-scale=1.0" >
+		<meta name="description" content="Handicapped Assistance">
+		<meta name="author" content="NONE">
+		<link href="{{ url_for('static',filename='styles/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+ 		 <link href="main_css.css" type="text/css" rel="stylesheet"></link>
+
+ 	</head>
+
+<body>
+
+	<div class="container-fluid">
+	<!-- FOR NAVBAR -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 0px">
+  		<div class="container-fluid">
+    		<div class="navbar-header">
+      			<a class="navbar-brand" href="#">Sentiment Analysis ( for a single tweet  )</a>
+    		</div>
+   		</div>
+	</nav>
+
+<form role = "form" method="POST" action="/" style="margin-top: 5em">
+   <div class = "form-group">
+      <label for = "name" >Input Area</label>
+      <textarea class = "form-control" name="code" placeholder="NEWS /TWEET here!!!" rows = "1"></textarea>
+   </div>
+   <button type="submit" id="btn" href="/analyse" class="btn btn-success">ANALYSE</button>
+</form>
+
+
+</div>
+
+
+</body>
+</html>
