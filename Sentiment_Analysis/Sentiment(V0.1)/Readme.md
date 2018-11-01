@@ -1,3 +1,5 @@
+Prototype for a single tweet ..... supply the tweet in text area to analyse for positive or negative .
+
 TO DO............
 
 1. Tweeter + NEWS integration 
