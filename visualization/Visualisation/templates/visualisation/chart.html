@@ -1,10 +1,26 @@
+
+
+
+{% load staticfiles %}
+<link rel='stylesheet' href="{% static 'css/bootstrap.min.css' %}" type="text/css"></link>
+<script src="{% static '/js/bootstrap.min.js' %}" type="text/javascript"></script>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" type="text/javascript"></script>
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
+<nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Stock Analysis</a>
+    </div>
+  </div>
+</nav>
 
 <div class="container-fluid">
-<h3 style="margin-left: 20%"><i class="fa fa-list-ul" aria-hidden="true" style="margin:4px"></i>Graphs</h3>
+<!-- <h3 style="margin-left: 20%"><i class="fa fa-list-ul" aria-hidden="true" style="margin:4px"></i>Graphs</h3> -->
 <div class="row" style="height:40%">
 	<div class="wrapper" >
   				 <ul class="pagination">
@@ -47,57 +63,20 @@
 </style>
 
 <script>
-
-var CHART = document.getElementById("lineChart").getContext('2d');
-
-var jsondata;
-var arr_month=[];
-var arr_petrol=[];
-var arr_diesel=[];
-
-function get(callback){
-$.ajax({
-  type: 'POST',
-  url: 'http://localhost:8000/users/graph',
-  dataType: 'json'
-}).done(function(data){
-	jsondata = JSON.stringify(data);
-	//$('#para').html(JSON.stringify(data.dataset[0].data[0].value));
-	for(var i=0 ; i < data.categories.length ; i++)
-	{
-		arr_month.push(data.categories[i].label);
-	}
-	 for(var i=0 ; i < data.dataset[0].data.length ; i++)
-	 {
-	 	arr_petrol.push(data.dataset[0].data[i].value);
-	 }
-
-	 for(var i=0 ; i < data.dataset[0].data.length ; i++)
-	 {
-	 	arr_diesel.push(data.dataset[1].data[i].value);
-	 }
-	callback();
-	//return [arr_petrol , arr_diesel , arr_month]
-	//$('#para').html(JSON.stringify(arr_petrol));
-	//$('#para').html(JSON.stringify(jsondata));
-	//console.log(JSON.stringify(data));
-});
-}
-//ar parr = $.map(arr_petrol , function(e){return e});
-//$('#para').html(parr[1]);
-get(project);
+project();
 
 function project(){
-	//var val = get();
+    var CHART = document.getElementById("lineChart").getContext('2d');
+
 	let lineChart = new Chart(CHART ,{
     type : 'line',
     data: {
-        labels: arr_month,//["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
             label: '# of Votes',
             fill: false,
             lineTension:0.1,
-            data: arr_petrol , //[20,16,19,13,15,22,23],   
+            data: [20,16,19,13,15,22,23],   
             backgroundColor: [
                 'rgba(255, 255, 0, 0.2)'
             ],
@@ -108,7 +87,7 @@ function project(){
         },
         {
             label: '# of Votes',
-            data: arr_diesel,//[15, 20, 13, 17, 22, 23],
+            data: [15, 20, 13, 17, 22, 23],
             fill:false,
             lineTension:0.1,    
             backgroundColor: [
@@ -136,6 +115,4 @@ function project(){
 
 });
 }
-
-
 </script>
