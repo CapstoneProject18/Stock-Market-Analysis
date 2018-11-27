@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('pub_date', models.DateTimeField()),
                 ('title', models.CharField(max_length=200)),
                 ('body', models.TextField()),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL,on_delete=models.CASCADE,)),
             ],
             options={
             },

@@ -1,10 +1,10 @@
-from django.conf.urls import patterns, include, url
+from django.urls import include, path
 from django.contrib import admin
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     # url(r'^$', 'testhystack.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    (r'^search/', include('haystack.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-)
+    path('search/', include('haystack.urls')),
+    path('admin/', admin.site.urls),
+]

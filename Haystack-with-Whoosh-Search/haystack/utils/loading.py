@@ -4,8 +4,8 @@ import inspect
 import warnings
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.utils.datastructures import SortedDict
-from django.utils import importlib
+from collections import OrderedDict
+import importlib
 from django.utils.module_loading import module_has_submodule
 from haystack.constants import Indexable, DEFAULT_ALIAS
 from haystack.exceptions import NotHandled, SearchFieldError
@@ -147,7 +147,7 @@ class UnifiedIndex(object):
     # Used to collect all the indexes into a cohesive whole.
     def __init__(self, excluded_indexes=None):
         self.indexes = {}
-        self.fields = SortedDict()
+        self.fields = OrderedDict()
         self._built = False
         self.excluded_indexes = excluded_indexes or []
         self.excluded_indexes_ids = {}
@@ -188,7 +188,7 @@ class UnifiedIndex(object):
 
     def reset(self):
         self.indexes = {}
-        self.fields = SortedDict()
+        self.fields = OrderedDict()
         self._built = False
         self._fieldnames = {}
         self._facet_fieldnames = {}

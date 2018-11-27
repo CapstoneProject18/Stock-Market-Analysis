@@ -1,13 +1,13 @@
 from __future__ import unicode_literals
 
 try:
-    from django.conf.urls import patterns, url
+    from django.urls import path
 except ImportError:
-    from django.conf.urls.defaults import patterns, url
+    from django.urls.defaults import path
 
 from haystack.views import SearchView
 
 
-urlpatterns = patterns('haystack.views',
-    url(r'^$', SearchView(), name='haystack_search'),
-)
+urlpatterns = [
+    path('', SearchView(), name='haystack_search'),
+]
