@@ -42,6 +42,134 @@
     <input type="submit" class="btn btn-info" value="Submit Button">
 </form>
 
+
+<h3>Company Details</h3>
+<div class="row">
+<div class = "col-sm-4">
+<div class="container-fluid">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Statistics</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ company_details.company_number }}</td>
+        <td>{{ company_details_values.company_number }}</td>
+      </tr>
+      <tr>
+        <td>{{ company_details.report_date }}</td>
+        <td>{{ company_details_values.report_date }}</td>
+      </tr>
+      <tr>
+        <td>{{ company_details.report_type }}</td>
+        <td>{{ company_details_values.report_type }}</td>
+      </tr>
+      <tr>
+        <td>{{ company_details.currency }}</td>
+        <td>{{ company_details_values.currency }}</td>
+      </tr>
+      <tr>
+        <td>{{ company_details.long_name }}</td>
+        <td>{{ company_details_values.long_name }}</td>
+      </tr>
+      <tr>
+        <td>{{ company_details.short_name }}</td>
+        <td>{{ company_details_values.short_name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+<div class = "col-sm-4">
+<div class="container-fluid">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Statistics</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ company_details.status }}</td>
+        <td>{{ company_details_values.status }}</td>
+      </tr>
+      <tr>
+        <td>{{ company_details.country_code }}</td>
+        <td>{{ company_details_values.country_code }}</td>
+      </tr>
+      <tr>
+        <td>{{  company_details.region }}</td>
+        <td>{{  company_details_values.region }}</td>
+      </tr>
+      <tr>
+        <td>{{  company_details.ticker }}</td>
+        <td>{{  company_details_values.ticker }}</td>
+      <tr>
+        <td>{{ company_details.status }}</td>
+        <td>{{ company_details_values.status }}</td>
+      </tr>
+      <tr>
+        <td>{{ company_details.country_code }}</td>
+        <td>{{ company_details_values.country_code }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+<div class = "col-sm-4">
+
+<div class="container-fluid">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Statistics</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{  company_details.exchange }}</td>
+        <td>{{  company_details_values.exchange }}</td>
+      </tr>  
+      <tr>
+        <td>{{ company_details.address1 }} </td>
+        <td>{{ company_details_values.address1 }}  {{ company_details_values.address2 }}</td>
+      </tr>
+      <tr>
+        <td>{{ company_details.address3 }} </td>
+        <td>{{ company_details_values.address3 }}  {{ company_details_values.address4 }}</td>
+      </tr>
+      <tr>
+        <td>{{  company_details.country }}</td>
+        <td>{{  company_details_values.city }}  {{  company_details_values.country }}</td>
+      </tr>
+      <tr>
+        <td>{{  company_details.phone_number }}</td>
+        <td>{{  company_details_values.phone_number }}</td>
+      </tr>
+      <tr>
+        <td>{{  company_details.website }}</td>
+        <td><a>{{  company_details_values.website }}</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+
+</div>
+
+
+
 <div class="container-fluid">
 <div class="row">
 	<div class="wrapper">
@@ -97,7 +225,7 @@ function get(callback){
 for(var i=0; i<stock_date.length ; i++) 
 {
     var date = new Date(stock_date[i])
-    stock_date[i] = '' + date.getDate() + '/' + date.getMonth() + '/' + date.getYear();
+    stock_date[i] = '' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
 }
 console.log(typeof stock_price)
 console.log(typeof stock_date)
