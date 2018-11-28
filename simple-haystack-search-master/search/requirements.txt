@@ -1,0 +1,9 @@
+Django==2.1.1
+django-haystack==2.8.1
+elasticsearch==2.4.1
+Faker==0.9.1
+python-dateutil==2.7.3
+pytz==2018.5
+six==1.11.0
+text-unidecode==1.2
+urllib3==1.23
