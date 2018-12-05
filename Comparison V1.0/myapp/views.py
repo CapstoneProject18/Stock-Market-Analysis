@@ -17,6 +17,9 @@ def fetch(request):
         company3 = ''
         start_date = '2015-12-31'
         end_date = '2016-12-31'
+        stock_return1 = []
+        stock_return2 = []
+        stock_return3 = []
         form = NameForm(request.POST)
         
         quandl.ApiConfig.api_key = "23KLyzjn5UvKQog-DZyM"
@@ -43,17 +46,41 @@ def fetch(request):
             close1 = list(data[data.columns[0]].values[:])
             close2 = list(data[data.columns[1]].values[:])
             close3 = list(data[data.columns[2]].values[:])
-        if len(data.columns == 2):
+        if len(data.columns) == 2:
             close1 = list(data[data.columns[0]].values[:])
             close2 = list(data[data.columns[1]].values[:])
             close3 = []
-        print(type(close1))
-        
+        # print(type(close1))
+        # print(close3)
         dateData = dataRAW.set_index('ticker')
         date_col = dateData.ix[:,0]
         date_json = date_col.to_json(orient='records')
+        if len(data.columns) == 3:
+            close1 = pd.DataFrame(close1)
+            stock_return1 = close1.apply(lambda x: x / x[0])
+            stock_return1 = list(stock_return1[stock_return1.columns[0]].values[:])
+            close1 = list(data[data.columns[0]].values[:])
+            close2 = pd.DataFrame(close2)
+            stock_return2 = close2.apply(lambda x: x / x[0])
+            stock_return2 = list(stock_return2[stock_return2.columns[0]].values[:])
+            close2 = list(data[data.columns[1]].values[:])
+            close3 = pd.DataFrame(close3)
+            stock_return3 = close3.apply(lambda x: x / x[0])
+            stock_return3 = list(stock_return3[stock_return3.columns[0]].values[:])
+            close3 = list(data[data.columns[2]].values[:])
+        if len(data.columns) == 2:
+            close1 = pd.DataFrame(close1)
+            stock_return1 = close1.apply(lambda x: x / x[0])
+            stock_return1 = list(stock_return1[stock_return1.columns[0]].values[:])
+            close1 = list(data[data.columns[0]].values[:])
+            close2 = pd.DataFrame(close2)
+            stock_return2 = close2.apply(lambda x: x / x[0])
+            stock_return2 = list(stock_return2[stock_return2.columns[0]].values[:])
+            close2 = list(data[data.columns[1]].values[:])
+            stock_return3 = []
+            close3 = []
         
-        return render(request, 'myapp/Comparison_Form.html', {'date': date_json, 'price1': close1, 'price2': close2, 'price3': close3 , 'company1': company1, 'company2': company2, 'company3': company3})
+        return render(request, 'myapp/Comparison_Form.html', {'date': date_json, 'price1': close1, 'price2': close2, 'price3': close3 , 'stock_return1': stock_return1, 'stock_return2' : stock_return2, 'stock_return3' : stock_return3 , 'company1': company1, 'company2': company2, 'company3': company3})
 
         # check whether it's valid:
 
