@@ -27,6 +27,7 @@
             {% for result in page.object_list %}
                 <p>
                     <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a>
+                    <div class="card-panel teal lighten-2">{{ result.object.description }}</div>
                 </p>
             {% empty %}
                 <p class="red">No results found.</p>
