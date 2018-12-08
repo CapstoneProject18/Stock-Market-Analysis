@@ -231,7 +231,7 @@ def chart(request):
 def company(request):
 	if request.method == 'POST':
 		form = NameForm(request.POST)
-		print(form)
+		# print(form)
 		return render(request, 'visualisation/company.html', { 'date' : date_json  , 'price' : close_json , 'company' : company})
 
 

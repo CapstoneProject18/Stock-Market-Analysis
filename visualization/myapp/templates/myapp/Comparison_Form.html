@@ -69,6 +69,12 @@
 			<canvas id="lineChart2" width="900px" height="500px">	
 			</canvas>
 		</div>
+    </div>
+    <div class="row">
+		<div>
+			<canvas id="lineChart3" width="900px" height="500px">	
+			</canvas>
+		</div>
 	</div>
 </div>
 
@@ -101,6 +107,9 @@ var stock_date=[];
 var stock_return1 = [];
 var stock_return2 = [];
 var stock_return3 = [];
+var stock_growth1 = [];
+var stock_growth2 = [];
+var stock_growth3 = [];
 var company_name1, company_name2, company_name3;
 function get(callback){
     stock_price1 = {{ price1 }}
@@ -109,6 +118,9 @@ function get(callback){
     stock_return1 = {{ stock_return1 }}
     stock_return2 = {{ stock_return2 }}
     stock_return3 = {{ stock_return3 }}
+    stock_growth1 = {{ stock_growth1 }} 
+    stock_growth2 = {{ stock_growth2 }} 
+    stock_growth3 = {{ stock_growth3 }} 
     stock_date = {{ date }}
     company_name1 = '{{ company1 }}'
     company_name2 = '{{ company2 }}'
@@ -119,20 +131,14 @@ for(var i=0; i<stock_date.length ; i++)
     var date = new Date(stock_date[i])
     stock_date[i] = '' + date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
 }
-
-// console.log(typeof stock_price)
-// console.log(typeof stock_date)
-// console.log(typeof [12,12,12,12,12])
 callback();
-// JSON.parse(stock_price1.replace(/&quot;/g,'"'));
-// print(stock_price1)
-// console.log(stock_price1)
 }
 
 function project(){
     var CHART1 = document.getElementById("lineChart1").getContext('2d');
     var CHART2 = document.getElementById("lineChart2").getContext('2d');
-	
+	var CHART3 = document.getElementById("lineChart3").getContext('2d');
+
     let lineChart1 = new Chart(CHART1 ,{
     type : 'line',
     data: {
@@ -188,66 +194,118 @@ function project(){
             }]
         }
     }
-
-
-});
-let lineChart2 = new Chart(CHART2 ,{
-    type : 'line',
-    data: {
-        labels: stock_date,
-        datasets: [{
-            label: 'Stock Prices of '+ company_name1,
-            fill: false,
-            lineTension:0.1,
-            data: stock_return1,   
-            backgroundColor: [
-                'rgba(0,0,0, 0.2)'
-            ],
-            borderColor: [
-                'rgba(0,0,15,1)'
-            ],
-            borderWidth: 2
+    });
+    let lineChart2 = new Chart(CHART2 ,{
+        type : 'line',
+        data: {
+            labels: stock_date,
+            datasets: [{
+                label: 'Returns on stock of '+ company_name1,
+                fill: false,
+                lineTension:0.1,
+                data: stock_return1,   
+                backgroundColor: [
+                    'rgba(0,0,0, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(0,0,15,1)'
+                ],
+                borderWidth: 2
+            },
+            {
+                label: 'Returns on stock of '+ company_name2,
+                fill: false,
+                lineTension:0.1,
+                data: stock_return2,   
+                backgroundColor: [
+                    'rgba(255, 255, 0, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(0,0,153,1)'
+                ],
+                borderWidth: 2
+            },
+            {
+                label: 'Returns on stock of '+ company_name3,
+                fill: false,
+                lineTension:0.1,
+                data: stock_return3,   
+                backgroundColor: [
+                    'rgba(255, 255, 0, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(0,0,255,1)'
+                ],
+                borderWidth: 2
+            }
+            ]
         },
-        {
-            label: 'Stock Prices of '+ company_name2,
-            fill: false,
-            lineTension:0.1,
-            data: stock_return2,   
-            backgroundColor: [
-                'rgba(255, 255, 0, 0.2)'
-            ],
-            borderColor: [
-                'rgba(0,0,153,1)'
-            ],
-            borderWidth: 2
+        options: {
+            responsive : false ,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    let lineChart3 = new Chart(CHART3 ,{
+        type : 'line',
+        data: {
+            labels: stock_date,
+            datasets: [{
+                label: 'Growth of stock '+ company_name1,
+                fill: false,
+                lineTension:0.1,
+                data: stock_growth1,   
+                backgroundColor: [
+                    'rgba(0,0,0, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(10,100,115,1)'
+                ],
+                borderWidth: 2
+            },
+            {
+                label: 'Growth of stock '+ company_name2,
+                fill: false,
+                lineTension:0.1,
+                data: stock_growth2,   
+                backgroundColor: [
+                    'rgba(255, 25, 0, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(0,10,153,1)'
+                ],
+                borderWidth: 2
+            },
+            {
+                label: 'Growth of stock '+ company_name3,
+                fill: false,
+                lineTension:0.1,
+                data: stock_growth3,   
+                backgroundColor: [
+                    'rgba(255, 25, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(0,0,55,1)'
+                ],
+                borderWidth: 2
+            }
+            ]
         },
-        {
-            label: 'Stock Prices of '+ company_name3,
-            fill: false,
-            lineTension:0.1,
-            data: stock_return3,   
-            backgroundColor: [
-                'rgba(255, 255, 0, 0.2)'
-            ],
-            borderColor: [
-                'rgba(0,0,255,1)'
-            ],
-            borderWidth: 2
+        options: {
+            responsive : false ,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
         }
-        ]
-    },
-    options: {
-        responsive : false ,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-
-
-});
+    });
 }
 </script>
