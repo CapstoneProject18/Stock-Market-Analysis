@@ -1,0 +1,145 @@
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+{% load staticfiles %}
+<link rel='stylesheet' href="{% static 'css/bootstrap.min.css' %}" type="text/css"></link>
+<script src="{% static '/js/bootstrap.min.js' %}" type="text/javascript"></script>
+
+
+<nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Sentiment Analysis</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+
+<form action='/company/' method="POST">{% csrf_token %}
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-1">
+              <label for="company">Company</label>
+              <input type="text" name="company" class="form-control" id="usrinp_1">
+            </div>
+
+
+        </div>
+    </div>
+    <input type="submit" class="btn btn-info" value="Submit Button">
+</form>
+
+	<div class="row">
+		<div>
+			<canvas id="lineChart" width="900px" height="500px">
+			</canvas>
+		</div>
+	</div>
+
+</div>
+
+<style type="text/css">
+	.wrapper {
+		text-align: center;
+	}
+	.button{
+		/*position: absolute;*/
+		top:50%;
+	}
+	.drop{
+		text-align: center;
+	}
+	canvas {
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 800px;
+}
+</style>
+
+<script>
+project();
+get(project);
+var company;
+var labels;
+var values;
+function get(callback){
+    company = '{{ company }}'
+    //labels = {{ labels }}
+    labels = ['neutral_tweet' , 'Negative_tweet' , 'Positive_tweet' ]
+    values = {{ values }}
+    console.log(typeof labels)
+    console.log(typeof values)
+    console.log(typeof [12,12,12,12,12])
+    callback();
+
+}
+
+function project(){
+
+
+
+
+
+
+    var CHART = document.getElementById("lineChart").getContext('2d');
+
+
+	let lineChart = new Chart(CHART ,{
+    type : 'bar',
+    data: {
+        labels: ['neutral_tweet' , 'Negative_tweet' , 'Positive_tweet' ] ,
+        datasets: [{
+            label: 'Sentiment  of '+ company,
+            fill: false,
+            lineTension:0.1,
+            data: [
+              {% for item in values %}
+                 "{{ item }}",
+                {% endfor %}
+  	    ],
+            backgroundColor: [
+                'rgba(255, 255, 0, 0.2)'
+            ],
+            borderColor: [
+                'rgba(0,0,153,1)'
+            ],
+            borderWidth: 2
+        }
+        // ,
+        // {
+        //     label: '# of Votes',
+        //     data: [15, 20, 13, 17, 22, 23],
+        //     fill:false,
+        //     lineTension:0.1,
+        //     backgroundColor: [
+        //         'rgba(255, 102, 102, 0.2)'
+        //     ],
+        //     borderColor: [
+        //         'rgba(255,0,0,1)'
+        //     ],
+        //     borderWidth: 1
+
+        // }
+        ]
+    },
+    options: {
+        responsive : false ,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+
+
+});
+}
+</script>
