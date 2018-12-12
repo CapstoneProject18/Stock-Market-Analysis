@@ -20,5 +20,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Visualisation.urls')),
-    path('compare/', include('myapp.urls'))
+    path('compare/', include('myapp.urls')),
+    path('twitter/', include('tweeter.urls'))
     ]

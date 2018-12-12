@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tweeter',
     'myapp',
     'Visualisation',
     'django.contrib.admin',
