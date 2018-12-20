@@ -118,6 +118,9 @@ def fetch_compare(request):
         
         return render(request, 'myapp/Comparison_Form.html', {'date': date_json, 'price': close_json, 'company': company})
 
+
+
+
 def chart(request):
     return render(request, 'myapp/Comparison_Form.html')
 

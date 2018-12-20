@@ -31,9 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'elasticsearchapp',
     'tweeter',
     'myapp',
+    'django_nose',
     'Visualisation',
+    'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,6 +73,11 @@ TEMPLATES = [
         },
     },
 ]
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=foo,bar',
+]   
 
 WSGI_APPLICATION = 'visualization.wsgi.application'
 

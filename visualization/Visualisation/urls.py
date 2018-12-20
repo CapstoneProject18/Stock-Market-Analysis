@@ -18,7 +18,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
- 	path('', views.fetch, name='chart'),
+ 	path('', views.home, name='chart'),
  	path('fetch/', views.fetch, name='fetch'),
  	path('company/', views.fetch, name='company')
 

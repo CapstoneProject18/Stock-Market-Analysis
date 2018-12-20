@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Visualisation.urls')),
     path('compare/', include('myapp.urls')),
-    path('twitter/', include('tweeter.urls'))
+    path('twitter/', include('tweeter.urls')),
+    path('companies/', include('elasticsearchapp.urls'))
     ]
