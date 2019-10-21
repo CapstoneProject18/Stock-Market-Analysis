@@ -13,7 +13,7 @@ idna==2.8
 inflection==0.3.1
 jdcal==1.4
 more-itertools==4.3.0
-nltk==3.4
+nltk==3.4.5
 nose==1.3.7
 numpy==1.15.4
 oauthlib==2.1.0
