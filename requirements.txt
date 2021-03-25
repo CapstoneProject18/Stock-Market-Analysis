@@ -24,7 +24,7 @@ PySocks==1.6.8
 pyspark==2.2.1
 python-dateutil==2.6.0
 pytz==2018.7
-PyYAML==3.13
+PyYAML==5.4
 Quandl==3.4.5
 requests==2.21.0
 requests-oauthlib==1.0.0
